@@ -42,6 +42,4 @@ Aplicação Fail-Fast Validations;
 
 Aplicação testes de unidade para Handlers, Entities, Commands, fakes repositories;
 
-Implementação banco de dados em memória;
-
 Implementação de migrações em SQLite;
