@@ -47,7 +47,7 @@ public class CompanyController : ControllerBase
         return (GenericCommandResult)handler.Handle(command);
     }
 
-    [Route("")]
+    [Route("names/updates")]
     [HttpPut]
     public GenericCommandResult Update(
        [FromBody] UpdateCompanyCommand command,
@@ -57,7 +57,7 @@ public class CompanyController : ControllerBase
         return (GenericCommandResult)handler.Handle(command);
     }
 
-    [Route("")]
+    [Route("names/deletes")]
     [HttpDelete]
     public GenericCommandResult Delete(
       [FromBody] DeleteCompanyCommand command,

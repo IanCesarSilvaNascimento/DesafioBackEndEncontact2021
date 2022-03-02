@@ -6,10 +6,11 @@ namespace Notebook.Domain.Commands;
 
 public class UpdateCompanyCommand : Notifiable, ICommand
 {
-    public UpdateCompanyCommand(Guid id, string name)
+    public UpdateCompanyCommand(Guid id, string name, string user)
     {
         Id = id;
         Name = name;
+        User = user;
 
     }
 

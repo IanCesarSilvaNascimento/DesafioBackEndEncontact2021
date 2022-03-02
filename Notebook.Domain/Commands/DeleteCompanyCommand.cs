@@ -6,11 +6,11 @@ namespace Notebook.Domain.Commands;
 
 public class DeleteCompanyCommand : Notifiable, ICommand
 {
-    public DeleteCompanyCommand(Guid id, string name)
+    public DeleteCompanyCommand(Guid id, string name, string user)
     {
         Id = id;
         Name = name;
-
+        User = user;
     }
 
     public Guid Id { get; set; }
