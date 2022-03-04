@@ -4,9 +4,9 @@ using Notebook.Domain.Commands.Contracts;
 
 namespace Notebook.Domain.Commands;
 
-public class DeleteCompanyCommand : Notifiable, ICommand
+public class DeleteContactCommand : Notifiable, ICommand
 {
-    public DeleteCompanyCommand(int id)
+    public DeleteContactCommand(int id)
     {
         Id = id;
   

@@ -11,8 +11,8 @@ using Notebook.Domain.Infra.Contexts;
 namespace Notebook.Domain.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220224213817_initialcreated")]
-    partial class initialcreated
+    [Migration("20220304034751_updateagain")]
+    partial class updateagain
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,9 +21,9 @@ namespace Notebook.Domain.Infra.Migrations
 
             modelBuilder.Entity("Notebook.Domain.Entities.Company", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("smalldate");
@@ -33,16 +33,25 @@ namespace Notebook.Domain.Infra.Migrations
                         .HasMaxLength(160)
                         .HasColumnType("varchar");
 
-                    b.Property<string>("User")
+                    b.HasKey("Id");
+
+                    b.ToTable("Company", (string)null);
+                });
+
+            modelBuilder.Entity("Notebook.Domain.Entities.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(160)
                         .HasColumnType("varchar");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("User");
-
-                    b.ToTable("Company", (string)null);
+                    b.ToTable("Contact", (string)null);
                 });
 #pragma warning restore 612, 618
         }

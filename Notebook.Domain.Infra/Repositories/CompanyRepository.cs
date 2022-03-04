@@ -16,16 +16,12 @@ public class CompanyRepository : ICompanyRepository
     }
     public IEnumerable<Company> GetAll()
     {
-        return _context.Companies
-               .AsNoTracking()
-               .OrderBy(x => x.CreatedDate);
+        return _context.Companies.AsNoTracking().OrderBy(x => x.Id);
     }
 
-    public Company GetById(Guid id)
+    public Company GetById(int id)
     {
-        return _context
-                .Companies
-                .First(x => x.Id == id);
+        return _context.Companies.AsNoTracking().FirstOrDefault(x => x.Id == id);
 
     }
 
@@ -37,12 +33,12 @@ public class CompanyRepository : ICompanyRepository
 
     public void Delete(Company company)
     {
-        _context.Remove(company).State = EntityState.Deleted;
+        _context.Companies.Remove(company);
         _context.SaveChanges();
     }
     public void Update(Company company)
     {
-        _context.Entry(company).State = EntityState.Modified;
+        _context.Companies.Update(company);
         _context.SaveChanges();
     }
 

@@ -15,24 +15,33 @@ namespace Notebook.Domain.Infra.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "varchar", maxLength: 160, nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "smalldate", nullable: false),
-                    User = table.Column<string>(type: "varchar", maxLength: 160, nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "smalldate", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Company", x => x.Id);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Company_User",
-                table: "Company",
-                column: "User");
+            migrationBuilder.CreateTable(
+                name: "Contact",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "varchar", maxLength: 160, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contact", x => x.Id);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Company");
+
+            migrationBuilder.DropTable(
+                name: "Contact");
         }
     }
 }

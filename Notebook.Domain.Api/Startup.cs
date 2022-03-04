@@ -22,8 +22,10 @@ public class Startup
         services.AddDbContext<DataContext>();
         services.AddTransient<ICompanyRepository, CompanyRepository>();
         services.AddTransient<CompanyHandler, CompanyHandler>();
+        services.AddTransient<IContactRepository, ContactRepository>();
+        services.AddTransient<ContactHandler, ContactHandler>();
 
-        
+
     }
 
 

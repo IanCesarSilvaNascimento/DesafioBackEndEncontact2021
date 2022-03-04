@@ -27,9 +27,9 @@ public class CompanyHandler :
             return new GenericCommandResult(false, "Parece que algo deu errado.", command.Notifications);
 
         //Gera o company
-        var company = new Company(command.Name, command.CreatedDate, command.User);
-
-        //Salva no banco
+        var company = new Company(command.Name);
+     
+        //Acessa o banco em memória passando o company gerado
         _repository.Create(company);
 
         return new GenericCommandResult(true, "Tarefa realizada com sucesso.", company);

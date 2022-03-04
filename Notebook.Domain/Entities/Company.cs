@@ -1,17 +1,17 @@
+
 namespace Notebook.Domain.Entities;
 
 public class Company : Entity
 {
-    public Company(string name, DateTime createdDate, string user)
+ 
+    public Company(string name)
     {
-        Name = name;
-        CreatedDate = createdDate;
-        User = user;
+        Name = name;       
+        CreatedDate = DateTime.UtcNow.ToLocalTime();
     }
 
     public string Name { get; private set; }
-    public DateTime CreatedDate { get; private set; }
-    public string User { get; private set; }
+    public DateTime CreatedDate { get; private set; } 
 
     public void UpdateName(string name)
     {

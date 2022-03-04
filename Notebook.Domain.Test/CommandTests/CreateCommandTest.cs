@@ -1,14 +1,15 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Notebook.Domain.Commands;
+using Notebook.Domain.Entities;
 
 namespace Notebook.Domain.Test.CommandTests;
 
 [TestClass]
 public class CreateCommandTest
 {
-    private readonly CreateCompanyCommand _invalidComand = new CreateCompanyCommand("","");
-    private readonly CreateCompanyCommand _validComand = new CreateCompanyCommand("Empresa teste LTDA","Usuário Teste");
+    private readonly CreateCompanyCommand _invalidComand = new CreateCompanyCommand("",);
+    private readonly CreateCompanyCommand _validComand = new CreateCompanyCommand("Empresa teste LTDA",);
 
     public CreateCommandTest()
     {

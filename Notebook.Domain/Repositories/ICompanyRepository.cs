@@ -8,7 +8,7 @@ public interface ICompanyRepository
     
     void Update(Company company);
 
-    Company GetById(Guid id);
+    Company GetById(int id);
 
     void Delete(Company company);
 
