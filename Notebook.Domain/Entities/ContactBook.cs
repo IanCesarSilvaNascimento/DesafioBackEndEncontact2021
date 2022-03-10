@@ -1,21 +1,21 @@
-
 namespace Notebook.Domain.Entities;
 
-public class Company : Entity
+public class ContactBook : Entity
 {
-    public Company(string name)
+
+    public ContactBook(string name)
     {
         Name = name;
-        CreatedDate = DateTime.UtcNow.ToLocalTime();
-      
+        Company = new List<Company>();
 
     }
 
     public string Name { get; set; }
-    public DateTime CreatedDate { get; set; }
- 
+    public IList<Company> Company { get; set; }
+
     public void UpdateName(string name)
     {
         Name = name;
     }
+
 }

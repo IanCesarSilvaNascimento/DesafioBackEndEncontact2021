@@ -16,6 +16,7 @@ public class CompanyRepository : ICompanyRepository
     }
     public IEnumerable<Company> GetAll()
     {
+            
         return _context.Companies.AsNoTracking().OrderBy(x => x.Id);
     }
 

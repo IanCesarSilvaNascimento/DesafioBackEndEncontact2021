@@ -9,8 +9,8 @@ namespace Notebook.Domain.Test.CommandTests;
 [TestClass]
 public class CreateCompanyHandlerTest
 {
-    private readonly CreateCompanyCommand _invalidComand = new CreateCompanyCommand("", "");
-    private readonly CreateCompanyCommand _validComand = new CreateCompanyCommand("Empresa teste LTDA", "Usuário Teste");
+    private readonly CreateCompanyCommand _invalidComand = new CreateCompanyCommand("");
+    private readonly CreateCompanyCommand _validComand = new CreateCompanyCommand("Empresa teste LTDA");
     private readonly CompanyHandler _handler = new CompanyHandler(new FakeCompanyRepository());
 
     public CreateCompanyHandlerTest()

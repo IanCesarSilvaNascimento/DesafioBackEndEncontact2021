@@ -4,9 +4,9 @@ using Notebook.Domain.Commands.Contracts;
 
 namespace Notebook.Domain.Commands;
 
-public class UpdateContactCommand : Notifiable, ICommand
+public class UpdateContactBookCommand : Notifiable, ICommand
 {
-    public UpdateContactCommand(int id, string name)
+    public UpdateContactBookCommand(int id, string name)
     {
         Id = id;
         Name = name;

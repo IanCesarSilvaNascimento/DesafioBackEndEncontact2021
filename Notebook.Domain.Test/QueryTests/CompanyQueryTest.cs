@@ -15,20 +15,22 @@ public class CompanyQueryTest
     public CompanyQueryTest()
     {
         _items = new List<Company>();
-        _items.Add(new Company("Empresa Teste Ltda", DateTime.Now, "Usuário1 teste"));
-        _items.Add(new Company("Empresa Teste Ltda", DateTime.Now, "Usuário teste"));
-        _items.Add(new Company("Empresa Teste Ltda", DateTime.Now, "Usuário1 teste"));
-        _items.Add(new Company("Empresa Teste Ltda", DateTime.Now, "Usuário teste"));
-        _items.Add(new Company("Empresa Teste Ltda", DateTime.Now, "Usuário teste"));
 
+        _items.Add(new Company("Empresa1 Teste Ltda"));
+        
+        _items.Add(new Company("Empresa1 Teste Ltda"));
+        
+        _items.Add(new Company("Empresa Teste Ltda"));
+
+        _items.Add(new Company("Empresa2 Teste Ltda"));
 
     }
     [TestMethod]
     public void GivenQueryReturnDataBasedOnName()
     {
-        var result = _items.AsQueryable().Where(CompanyQuery.GetAll("Usuário1 teste"));
-        Assert.AreEqual(2,result.Count());
-     
+        var result = _items.AsQueryable().Where(CompanyQuery.GetAll("Empresa1 Teste Ltda"));
+        Assert.AreEqual(2, result.Count());
+
     }
 
 }

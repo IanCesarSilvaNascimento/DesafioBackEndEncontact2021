@@ -27,21 +27,25 @@ namespace Notebook.Domain.Infra.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1L)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("ContactBookId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("smalldate");
+                        .HasColumnType("SMALLDATETIME");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(160)
-                        .HasColumnType("varchar");
+                        .HasColumnType("VARCHAR");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactBookId");
 
                     b.ToTable("Company", (string)null);
                 });
 
-            modelBuilder.Entity("Notebook.Domain.Entities.Contact", b =>
+            modelBuilder.Entity("Notebook.Domain.Entities.ContactBook", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,12 +57,24 @@ namespace Notebook.Domain.Infra.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(160)
-                        .HasColumnType("varchar");
+                        .HasColumnType("VARCHAR");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Id");
+                    b.HasKey("Id");
 
-                    b.ToTable("Contact", (string)null);
+                    b.ToTable("ContactBook", (string)null);
+                });
+
+            modelBuilder.Entity("Notebook.Domain.Entities.Company", b =>
+                {
+                    b.HasOne("Notebook.Domain.Entities.ContactBook", null)
+                        .WithMany("Company")
+                        .HasForeignKey("ContactBookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Notebook.Domain.Entities.ContactBook", b =>
+                {
+                    b.Navigation("Company");
                 });
 #pragma warning restore 612, 618
         }

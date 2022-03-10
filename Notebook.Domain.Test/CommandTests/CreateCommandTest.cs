@@ -8,8 +8,8 @@ namespace Notebook.Domain.Test.CommandTests;
 [TestClass]
 public class CreateCommandTest
 {
-    private readonly CreateCompanyCommand _invalidComand = new CreateCompanyCommand("",);
-    private readonly CreateCompanyCommand _validComand = new CreateCompanyCommand("Empresa teste LTDA",);
+    private readonly CreateCompanyCommand _invalidComand = new CreateCompanyCommand("");
+    private readonly CreateCompanyCommand _validComand = new CreateCompanyCommand("Empresa teste LTDA");
 
     public CreateCommandTest()
     {

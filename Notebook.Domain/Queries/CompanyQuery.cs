@@ -5,9 +5,9 @@ namespace Notebook.Domain.Queries;
 
 public static class CompanyQuery
 {
-    // public static Expression<Func<Company, bool>> GetAll(IList<Contact> contact)
-    // {
-    //     return x => x.Contact == contact;
-    // }
+    public static Expression<Func<Company, bool>> GetAll(string name)
+    {
+        return x => x.Name == name ;
+    }
 
 }

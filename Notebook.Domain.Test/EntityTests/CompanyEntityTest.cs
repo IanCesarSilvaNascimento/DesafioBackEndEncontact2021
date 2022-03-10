@@ -7,7 +7,7 @@ namespace Notebook.Domain.Test.EntityTests;
 [TestClass]
 public class CompanyEntityTest
 {
-    private readonly Company _valid = new Company("Empresa Test LTDA",System.DateTime.Now,"Usuário Test");
+    private readonly Company _valid = new Company("Empresa Test LTDA");
 
     [TestMethod]
     public void GivenNewCompanyReturnNotSuccess()

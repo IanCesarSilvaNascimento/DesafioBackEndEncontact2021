@@ -11,7 +11,7 @@ public class DataContext : DbContext
 
     public DbSet<Company> Companies { get; set; }
 
-    public DbSet<Contact> Contacts { get; set; }
+    public DbSet<ContactBook> ContactBooks { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -20,16 +20,29 @@ public class DataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Company>().ToTable("Company");
-        modelBuilder.Entity<Company>().HasKey(x => x.Id).HasName("PK_Id");
-        modelBuilder.Entity<Company>().Property(x => x.Id).ValueGeneratedOnAdd().UseIdentityColumn();
-        modelBuilder.Entity<Company>().Property(x => x.Name).HasColumnType("varchar").HasMaxLength(160);
-        modelBuilder.Entity<Company>().Property(x => x.CreatedDate).HasColumnType("smalldate");
+        modelBuilder.Entity<Company>(x =>
+        {
+            x.ToTable("Company");
+            x.HasKey(x => x.Id);
+            x.Property(x => x.Id).ValueGeneratedOnAdd().UseIdentityColumn();
+            x.Property(x => x.Name).HasColumnType("VARCHAR").HasMaxLength(160);
+            x.Property(x => x.CreatedDate).HasColumnType("SMALLDATETIME");
 
-        modelBuilder.Entity<Contact>().ToTable("Contact");
-        modelBuilder.Entity<Contact>().HasKey(x => x.Id).HasName("PK_Id");
-        modelBuilder.Entity<Contact>().Property(x => x.Id).ValueGeneratedOnAdd().UseIdentityColumn();
-        modelBuilder.Entity<Contact>().Property(x => x.Name).HasColumnType("varchar").HasMaxLength(160);
+        });
+
+        modelBuilder.Entity<ContactBook>(x =>
+       {
+           x.ToTable("ContactBook");
+           x.HasKey(x => x.Id);
+           x.Property(x => x.Id).ValueGeneratedOnAdd().UseIdentityColumn();
+           x.Property(x => x.Name).HasColumnType("VARCHAR").HasMaxLength(160);
+           x.HasMany(x => x.Company).WithOne().OnDelete(DeleteBehavior.Cascade);
+
+       });
+
+       modelBuilder.Entity<ContactBook>()
+        .Navigation(b => b.Company)
+        .UsePropertyAccessMode(PropertyAccessMode.Property);
 
     }
 }

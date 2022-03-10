@@ -22,9 +22,9 @@ public class FakeCompanyRepository : ICompanyRepository
         throw new NotImplementedException();
     }
 
-    public Company GetById(Guid id)
+    public Company GetById(int id)
     {
-        return new Company("Empresa Teste LTDA",DateTime.Now,"Usuário");
+        return new Company("Empresa Teste LTDA");
     }
 
     public void Update(Company company)

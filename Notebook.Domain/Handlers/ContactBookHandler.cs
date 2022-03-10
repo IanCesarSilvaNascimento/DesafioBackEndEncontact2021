@@ -7,36 +7,37 @@ using Notebook.Domain.Repositories;
 
 namespace Notebook.Domain.Handlers;
 
-public class ContactHandler :
+public class ContactBookHandler :
                 Notifiable,
-                IHandler<CreateContactCommand>,
-                IHandler<UpdateContactCommand>,
-                IHandler<DeleteContactCommand>
+                IHandler<CreateContactBookCommand>,
+                IHandler<UpdateContactBookCommand>,
+                IHandler<DeleteContactBookCommand>
 {
-    private readonly IContactRepository _repository;
-
-    public ContactHandler(IContactRepository repository)
+    private readonly IContactBookRepository _repository;
+    public ContactBookHandler(IContactBookRepository repository)
     {
         _repository = repository;
     }
-    public ICommandResult Handle(CreateContactCommand command)
+    public ICommandResult Handle(CreateContactBookCommand command)
     {
         //Fail Fast Validations
         command.Validate();
         if (command.Invalid)
             return new GenericCommandResult(false, "Parece que algo deu errado.", command.Notifications);
 
-        //Gera o company
-        var contact = new Contact(command.Name);
+        
+        //Gera o contact
+        var contactBook = new ContactBook(command.Name);
+        contactBook.Company.Add(command.Company);
 
         //Salva no banco
-        _repository.Create(contact);
+        _repository.Create(contactBook);
 
-        return new GenericCommandResult(true, "Tarefa realizada com sucesso.", contact);
+        return new GenericCommandResult(true, "Tarefa realizada com sucesso.", contactBook);
 
     }
 
-    public ICommandResult Handle(UpdateContactCommand command)
+    public ICommandResult Handle(UpdateContactBookCommand command)
     {
         //Fail Fast Validations
         command.Validate();
@@ -56,7 +57,7 @@ public class ContactHandler :
         return new GenericCommandResult(true, "Tarefa realizada com sucesso.", contact);
     }
 
-    public ICommandResult Handle(DeleteContactCommand command)
+    public ICommandResult Handle(DeleteContactBookCommand command)
     {
         //Fail Fast Validations
         command.Validate();

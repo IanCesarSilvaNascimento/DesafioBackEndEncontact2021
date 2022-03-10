@@ -8,56 +8,55 @@ namespace Notebook.Domain.Api.Controllers;
 
 
 [ApiController]
-[Route("v1/contacts")]
+[Route("v1/contactbooks")]
 
-public class ContactController : ControllerBase
+public class ContactaBookController : ControllerBase
 {
 
-    [Route("gets")]
-    [HttpGet]
-    public IEnumerable<Contact> GetAll(
-         [FromServices] IContactRepository repository
+    
+    [HttpGet("")]
+    public IEnumerable<ContactBook> GetAll(
+         [FromServices] IContactBookRepository repository
     )
     {
         return repository.GetAll();
     }
 
-    [Route("gets/{id:int}")]
-    [HttpGet]
-    public Contact GetById(
-               [FromServices] IContactRepository repository,
+    
+    [HttpGet("{id:int}")]
+    public ContactBook GetById(
+               [FromServices] IContactBookRepository repository,
                [FromRoute] int id
        )
     {
         return repository.GetById(id);
     }
 
-    [Route("posts")]
-    [HttpPost]
+    
+    [HttpPost("")]
     public GenericCommandResult Create(
-        [FromBody] CreateContactCommand command,
-        [FromServices] ContactHandler handler
+        [FromBody] CreateContactBookCommand command,
+        [FromServices] ContactBookHandler handler
     )
     {
 
         return (GenericCommandResult)handler.Handle(command);
     }
 
-    [Route("updates")]
-    [HttpPut]
+    [HttpPut("")]
     public GenericCommandResult Update(
-         [FromBody] UpdateContactCommand command,
-         [FromServices] ContactHandler handler
+         [FromBody] UpdateContactBookCommand command,
+         [FromServices] ContactBookHandler handler
       )
     {
         return (GenericCommandResult)handler.Handle(command);
     }
 
-    [Route("deletes")]
-    [HttpDelete]
+
+    [HttpDelete("")]
     public GenericCommandResult Delete(
-      [FromBody] DeleteContactCommand command,
-      [FromServices] ContactHandler handler
+      [FromBody] DeleteContactBookCommand command,
+      [FromServices] ContactBookHandler handler
 
     )
     {
